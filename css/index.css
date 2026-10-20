@@ -72,6 +72,200 @@ header .nav {
     height: 48px;
   }
 }
+
+/* Final visual polish: semantic theme tokens and consistent editorial contrast. */
+:root {
+  --theme-page: #F8F8F8;
+  --theme-surface: #FFFFFF;
+  --theme-nav: rgba(245, 245, 245, 0.94);
+  --theme-primary: #202124;
+  --theme-secondary: #5F6368;
+  --theme-muted: #8A8F94;
+  --theme-border: #E5E7E9;
+}
+:root[data-theme="dark"] {
+  --theme-page: #0B0D0F;
+  --theme-surface: #15191D;
+  --theme-nav: rgba(17, 20, 23, 0.94);
+  --theme-primary: #F3F5F7;
+  --theme-secondary: #B7BEC6;
+  --theme-muted: #7D8791;
+  --theme-border: #2A323A;
+}
+html { background: var(--theme-page); }
+body { background: var(--theme-page); color: var(--theme-primary); }
+header .nav {
+  background: var(--theme-nav);
+  border-bottom: 1px solid var(--theme-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+header .nav .right .desktop-menu ul li a,
+header .nav .right .menu-toggle .iconfont { color: var(--theme-secondary); }
+header .nav .right .desktop-menu ul li a:hover,
+header .nav .right .desktop-menu ul li a:active { color: var(--theme-primary); }
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--theme-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--theme-secondary);
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.theme-toggle:hover {
+  color: var(--theme-primary);
+  background: var(--theme-surface);
+  border-color: var(--theme-primary);
+}
+.main .aboutme h1,
+.main .bigtitle h1,
+.main .text h1,
+.main .company { color: var(--theme-primary); }
+.main .aboutme p,
+.main .title,
+.main .deatils,
+.main .position,
+.main .text p,
+.main .time,
+footer .info { color: var(--theme-secondary); }
+.main .creation .display section,
+.main .info,
+.modal-content,
+.mobile-menu-list {
+  background-color: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+footer { background-color: var(--theme-page); border-color: var(--theme-border); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* Theme switcher: keep the existing light design intact and layer a dark palette on top. */
+:root[data-theme="dark"] body {
+  background-color: #0B0D0F;
+  color: #F2F4F5;
+}
+:root[data-theme="dark"] header .nav,
+:root[data-theme="dark"] .mobile-menu-list,
+:root[data-theme="dark"] .modal-content,
+:root[data-theme="dark"] footer {
+  background-color: #111417;
+  border-color: #293038;
+}
+:root[data-theme="dark"] header .nav .right .desktop-menu ul li a,
+:root[data-theme="dark"] header .nav .right .menu-toggle .iconfont,
+:root[data-theme="dark"] .title,
+:root[data-theme="dark"] .deatils,
+:root[data-theme="dark"] .position,
+:root[data-theme="dark"] .text p,
+:root[data-theme="dark"] footer .info {
+  color: #B3BAC1;
+}
+:root[data-theme="dark"] header .nav .right .desktop-menu ul li a:hover,
+:root[data-theme="dark"] header .nav .right .desktop-menu ul li a:active,
+:root[data-theme="dark"] .text h1,
+:root[data-theme="dark"] .company,
+:root[data-theme="dark"] .bigtitle h1,
+:root[data-theme="dark"] .aboutme h1 {
+  color: #F2F4F5;
+}
+:root[data-theme="dark"] .main .creation .display section,
+:root[data-theme="dark"] .main .info,
+:root[data-theme="dark"] .modal-content {
+  background-color: #15191D;
+  border-color: #293038;
+}
+:root[data-theme="dark"] .theme-toggle {
+  border-color: #39424B;
+  color: #C7CDD2;
+  background: transparent;
+}
+:root[data-theme="dark"] .theme-toggle:hover {
+  background: #1D2328;
+  color: #FFFFFF;
+}
+
+header .nav .right .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #D1D1D1;
+  border-radius: 12px;
+  background: transparent;
+  color: #666666;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+.theme-toggle:hover { transform: translateY(-1px); }
+.theme-toggle:focus-visible,
+.menu-toggle:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgba(90, 145, 255, 0.5);
+  outline-offset: 3px;
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The original stylesheet uses fixed text colors in many responsive blocks.
+   Override those values together so every text layer follows dark mode. */
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] body * {
+  color: #F2F4F5;
+}
+:root[data-theme="dark"] body p,
+:root[data-theme="dark"] body span,
+:root[data-theme="dark"] body li,
+:root[data-theme="dark"] body .deatils,
+:root[data-theme="dark"] body .position,
+:root[data-theme="dark"] body .text p,
+:root[data-theme="dark"] body .info,
+:root[data-theme="dark"] body .time {
+  color: #B3BAC1;
+}
+:root[data-theme="dark"] body h1,
+:root[data-theme="dark"] body h2,
+:root[data-theme="dark"] body h3,
+:root[data-theme="dark"] body .title,
+:root[data-theme="dark"] body .company,
+:root[data-theme="dark"] body .text h1,
+:root[data-theme="dark"] body .bigtitle h1 {
+  color: #F2F4F5;
+}
+:root[data-theme="dark"] body a:hover,
+:root[data-theme="dark"] body button:hover {
+  color: #FFFFFF;
+}
+:root[data-theme="dark"] body .main .creation .display section,
+:root[data-theme="dark"] body .main .info,
+:root[data-theme="dark"] body .modal-content,
+:root[data-theme="dark"] body .mobile-menu-list {
+  background-color: #15191D;
+  border-color: #293038;
+}
+:root[data-theme="dark"] body footer,
+:root[data-theme="dark"] body header .nav {
+  background-color: #111417;
+  border-color: #293038;
+}
+:root[data-theme="dark"] .theme-toggle {
+  color: #C7CDD2 !important;
+}
 header .nav .left a img {
   width: 44px;
   height: 44px;
@@ -2204,3 +2398,20 @@ header .nav .right .mobile-menu.open .mobile-menu-list {
     margin-left: 16px;
   }
 }
+
+/* Ensure theme tokens win over legacy responsive declarations. */
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] body * { color: var(--theme-primary); }
+:root[data-theme="dark"] body p,
+:root[data-theme="dark"] body span,
+:root[data-theme="dark"] body .title,
+:root[data-theme="dark"] body .deatils,
+:root[data-theme="dark"] body .position,
+:root[data-theme="dark"] body .text p,
+:root[data-theme="dark"] body .time,
+:root[data-theme="dark"] footer .info { color: var(--theme-secondary); }
+:root[data-theme="dark"] body .main .creation .display section,
+:root[data-theme="dark"] body .main .info,
+:root[data-theme="dark"] body .modal-content,
+:root[data-theme="dark"] body .mobile-menu-list { background: var(--theme-surface); border-color: var(--theme-border); }
+:root[data-theme="dark"] body footer { background: var(--theme-page); border-color: var(--theme-border); }
