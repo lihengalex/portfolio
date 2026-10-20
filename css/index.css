@@ -2464,3 +2464,53 @@ header .nav .right .nav-actions .menu-toggle { display: none; }
 }
 :root[data-theme="dark"] body #showModalBtn span,
 :root[data-theme="dark"] body #showModalBtn i { color: #F3F5F7 !important; }
+
+/* Material 3 dark color roles: surface for the page, surface-container for
+   navigation/content layers, and paired on-surface colors for readable type. */
+:root[data-theme="dark"] {
+  --m3-surface: #141218;
+  --m3-surface-container: #211F26;
+  --m3-surface-container-high: #2B2930;
+  --m3-on-surface: #E6E0E9;
+  --m3-on-surface-variant: #CAC4D0;
+  --m3-outline: #938F99;
+  --m3-primary: #D0BCFF;
+  --m3-on-primary: #381E72;
+  --m3-primary-container: #4F378B;
+  --m3-on-primary-container: #EADDFF;
+}
+:root[data-theme="dark"] body { background: var(--m3-surface) !important; color: var(--m3-on-surface) !important; }
+:root[data-theme="dark"] body header .nav { background: var(--m3-surface-container) !important; border-color: var(--m3-outline) !important; }
+:root[data-theme="dark"] body header .nav .right .desktop-menu ul li a { color: var(--m3-on-surface-variant) !important; }
+:root[data-theme="dark"] body header .nav .right .desktop-menu ul li a:hover,
+:root[data-theme="dark"] body header .nav .right .desktop-menu ul li a:active { color: var(--m3-primary) !important; }
+:root[data-theme="dark"] body h1,
+:root[data-theme="dark"] body h2,
+:root[data-theme="dark"] body h3,
+:root[data-theme="dark"] body .title,
+:root[data-theme="dark"] body .company,
+:root[data-theme="dark"] body .text h1,
+:root[data-theme="dark"] body .bigtitle h1 { color: var(--m3-on-surface) !important; }
+:root[data-theme="dark"] body p,
+:root[data-theme="dark"] body span,
+:root[data-theme="dark"] body li,
+:root[data-theme="dark"] body .deatils,
+:root[data-theme="dark"] body .position,
+:root[data-theme="dark"] body .text p,
+:root[data-theme="dark"] body .time,
+:root[data-theme="dark"] footer .info { color: var(--m3-on-surface-variant) !important; }
+:root[data-theme="dark"] body .main .creation .display section,
+:root[data-theme="dark"] body .main .info,
+:root[data-theme="dark"] body .modal-content,
+:root[data-theme="dark"] body .mobile-menu-list { background: var(--m3-surface-container) !important; border-color: var(--m3-outline) !important; }
+:root[data-theme="dark"] body #showModalBtn {
+  background: var(--m3-primary-container) !important;
+  border-color: transparent !important;
+  color: var(--m3-on-primary-container) !important;
+}
+:root[data-theme="dark"] body #showModalBtn span,
+:root[data-theme="dark"] body #showModalBtn i { color: var(--m3-on-primary-container) !important; }
+:root[data-theme="dark"] body .icon_lists a { color: var(--m3-primary) !important; }
+:root[data-theme="dark"] body .theme-toggle { border-color: var(--m3-outline) !important; color: var(--m3-on-surface) !important; }
+:root[data-theme="dark"] body .theme-toggle:hover { background: var(--m3-surface-container-high) !important; color: var(--m3-primary) !important; }
+:root[data-theme="dark"] body footer { background: var(--m3-surface-container) !important; border-color: var(--m3-outline) !important; }
