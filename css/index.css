@@ -2416,17 +2416,6 @@ header .nav .right .mobile-menu.open .mobile-menu-list {
 :root[data-theme="dark"] body .mobile-menu-list { background: var(--theme-surface); border-color: var(--theme-border); }
 :root[data-theme="dark"] body footer { background: var(--theme-page); border-color: var(--theme-border); }
 
-.social-svg {
-  width: 24px;
-  height: 24px;
-  display: block;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-#showModalBtn .social-svg { width: 22px; height: 22px; }
 
 /* Keep the theme control in the same horizontal navigation row. */
 header .nav .right {
