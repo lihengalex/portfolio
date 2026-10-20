@@ -2432,3 +2432,35 @@ header .nav .right .nav-actions .menu-toggle { display: none; }
   header .nav .right .nav-actions { gap: 8px; }
   header .nav .right .nav-actions .menu-toggle { display: block; }
 }
+
+/* Dark-mode contrast override must come after the legacy stylesheet rules. */
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] body * { color: #F3F5F7 !important; }
+:root[data-theme="dark"] body p,
+:root[data-theme="dark"] body span,
+:root[data-theme="dark"] body li,
+:root[data-theme="dark"] body .deatils,
+:root[data-theme="dark"] body .position,
+:root[data-theme="dark"] body .text p,
+:root[data-theme="dark"] body .time,
+:root[data-theme="dark"] footer .info { color: #B7BEC6 !important; }
+:root[data-theme="dark"] body h1,
+:root[data-theme="dark"] body h2,
+:root[data-theme="dark"] body h3,
+:root[data-theme="dark"] body .title,
+:root[data-theme="dark"] body .company,
+:root[data-theme="dark"] body .text h1,
+:root[data-theme="dark"] body .bigtitle h1 { color: #F3F5F7 !important; }
+:root[data-theme="dark"] body header .nav,
+:root[data-theme="dark"] body footer { background-color: #111417 !important; border-color: #2A323A !important; }
+:root[data-theme="dark"] body .main .creation .display section,
+:root[data-theme="dark"] body .main .info,
+:root[data-theme="dark"] body .modal-content,
+:root[data-theme="dark"] body .mobile-menu-list { background-color: #15191D !important; border-color: #2A323A !important; }
+:root[data-theme="dark"] body #showModalBtn {
+  background-color: #15191D !important;
+  border-color: #2A323A !important;
+  color: #F3F5F7 !important;
+}
+:root[data-theme="dark"] body #showModalBtn span,
+:root[data-theme="dark"] body #showModalBtn i { color: #F3F5F7 !important; }
