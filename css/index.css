@@ -2514,3 +2514,34 @@ header .nav .right .nav-actions .menu-toggle { display: none; }
 :root[data-theme="dark"] body .theme-toggle { border-color: var(--m3-outline) !important; color: var(--m3-on-surface) !important; }
 :root[data-theme="dark"] body .theme-toggle:hover { background: var(--m3-surface-container-high) !important; color: var(--m3-primary) !important; }
 :root[data-theme="dark"] body footer { background: var(--m3-surface-container) !important; border-color: var(--m3-outline) !important; }
+
+/* Final dark-theme direction: one calm canvas, blue interaction accent,
+   and the original WeChat green reserved for the contact action. */
+:root[data-theme="dark"] {
+  --m3-surface: #101214;
+  --m3-surface-container: #101214;
+  --m3-surface-container-high: #1A1D20;
+  --m3-on-surface: #F1F3F4;
+  --m3-on-surface-variant: #B8BEC5;
+  --m3-outline: #3A4046;
+  --m3-primary: #A8C7FA;
+  --m3-on-primary: #0B2F57;
+  --m3-primary-container: #2F5F9E;
+  --m3-on-primary-container: #EAF2FF;
+}
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] body header .nav,
+:root[data-theme="dark"] body .main .creation .display section,
+:root[data-theme="dark"] body .main .info,
+:root[data-theme="dark"] body .modal-content,
+:root[data-theme="dark"] body .mobile-menu-list,
+:root[data-theme="dark"] body footer {
+  background: #101214 !important;
+}
+:root[data-theme="dark"] body #showModalBtn {
+  background: #07C160 !important;
+  border-color: #07C160 !important;
+  color: #FFFFFF !important;
+}
+:root[data-theme="dark"] body #showModalBtn span,
+:root[data-theme="dark"] body #showModalBtn i { color: #FFFFFF !important; }
