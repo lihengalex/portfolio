@@ -160,8 +160,8 @@
              themeToggle.setAttribute('aria-pressed', String(isDark));
              themeToggle.setAttribute('aria-label', isDark ? '切换浅色模式' : '切换深色模式');
              themeToggle.innerHTML = isDark
-               ? '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>'
-               : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path></svg>';
+               ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12ZM11 2h2v3h-2V2Zm0 17h2v3h-2v-3ZM2 11h3v2H2v-2Zm17 0h3v2h-3v-2ZM4.22 5.64l1.42-1.42 2.12 2.12-1.42 1.42-2.12-2.12Zm12.02 12.02 1.42-1.42 2.12 2.12-1.42 1.42-2.12-2.12ZM18.36 4.22l1.42 1.42-2.12 2.12-1.42-1.42 2.12-2.12ZM6.34 16.24l2.12-2.12 1.42 1.42-2.12 2.12-1.42-1.42Z"></path></svg>'
+               : '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10.5 3.05a8.5 8.5 0 1 0 10.45 10.45A8.5 8.5 0 0 1 10.5 3.05Z"></path></svg>';
              heroCharacter.src = isDark ? './uploads/img/aboutme/inverted.gif' : './uploads/img/aboutme/CharacterGIF.gif';
            }
 

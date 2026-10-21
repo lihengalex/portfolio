@@ -215,11 +215,8 @@ button:focus-visible {
 .theme-toggle svg {
   width: 18px;
   height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  display: block;
+  fill: currentColor;
 }
 
 /* The original stylesheet uses fixed text colors in many responsive blocks.
