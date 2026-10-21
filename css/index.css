@@ -218,6 +218,17 @@ button:focus-visible {
   display: block;
   fill: currentColor;
 }
+.main .aboutme .right .picbox#heroCharacter {
+  transition: filter 220ms ease;
+}
+.main .aboutme .right .picbox#heroCharacter svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.main .aboutme .right .picbox#heroCharacter.lottie-dark {
+  filter: invert(1) hue-rotate(180deg);
+}
 
 /* The original stylesheet uses fixed text colors in many responsive blocks.
    Override those values together so every text layer follows dark mode. */
