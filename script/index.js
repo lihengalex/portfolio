@@ -154,13 +154,17 @@
            const heroCharacter = document.getElementById('heroCharacter');
            const savedTheme = localStorage.getItem('portfolio-theme');
            let heroAnimation;
+           let heroAnimationRequest = 0;
 
            function loadHeroAnimation(isDark) {
              if (!window.lottie || !heroCharacter) return;
+             const requestId = ++heroAnimationRequest;
              fetch('./uploads/img/aboutme/character-lottie.json')
                .then(response => response.json())
                .then(animationData => {
                  const captionLayer = animationData.layers?.find(layer => layer.nm === "Hi, I'm alex");
+                 if (captionLayer) captionLayer.ks.o = { a: 0, k: 0 };
+                 if (requestId !== heroAnimationRequest) return;
                  if (captionLayer?.t?.d?.k) {
                    captionLayer.t.d.k.forEach(frame => {
                      if (frame.s) frame.s.fc = isDark ? [1, 1, 1] : [0, 0, 0];
@@ -181,8 +185,18 @@
                    invertColors(animationData);
                    if (captionLayer?.t?.d?.k) captionLayer.t.d.k.forEach(frame => { if (frame.s) frame.s.fc = [1, 1, 1]; });
                  }
+                 if (requestId !== heroAnimationRequest) return;
                  if (heroAnimation) heroAnimation.destroy();
                  heroAnimation = window.lottie.loadAnimation({ container: heroCharacter, renderer: 'svg', loop: true, autoplay: true, animationData });
+                 heroCharacter.classList.toggle('lottie-dark', isDark);
+                 heroAnimation.addEventListener('DOMLoaded', () => {
+                   const captionNodes = heroCharacter.querySelectorAll('[data-name="Hi, I\'m alex"]');
+                   captionNodes.forEach(node => {
+                     node.style.fill = isDark ? '#FFFFFF' : '#111111';
+                     node.style.color = isDark ? '#FFFFFF' : '#111111';
+                     if (isDark) node.style.filter = 'invert(1)';
+                   });
+                 });
                });
            }
 

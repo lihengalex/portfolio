@@ -232,6 +232,8 @@ button:focus-visible {
   fill: #000000 !important;
   color: #000000 !important;
 }
+.main .aboutme .right .picbox#heroCharacter.lottie-dark { filter: none; }
+.main .aboutme .right .picbox#heroCharacter.lottie-dark > svg { filter: invert(1) hue-rotate(180deg); }
 
 /* The original stylesheet uses fixed text colors in many responsive blocks.
    Override those values together so every text layer follows dark mode. */
