@@ -219,6 +219,7 @@ button:focus-visible {
   fill: currentColor;
 }
 .main .aboutme .right .picbox#heroCharacter {
+  position: relative;
   transition: filter 220ms ease;
 }
 .main .aboutme .right .picbox#heroCharacter svg {
@@ -232,7 +233,31 @@ button:focus-visible {
   color: #000000 !important;
 }
 .main .aboutme .right .picbox#heroCharacter.lottie-dark {
+  filter: none;
+}
+.main .aboutme .right .picbox#heroCharacter.lottie-dark > svg {
   filter: invert(1) hue-rotate(180deg);
+}
+.lottie-caption {
+  position: absolute;
+  z-index: 2;
+  top: 14.5%;
+  left: 22%;
+  width: 44%;
+  height: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  background: #FFFFFF;
+  color: #111111 !important;
+  font-size: 12px;
+  line-height: 1;
+  pointer-events: none;
+}
+.lottie-dark .lottie-caption {
+  background: #000000;
+  color: #FFFFFF !important;
 }
 
 /* The original stylesheet uses fixed text colors in many responsive blocks.
