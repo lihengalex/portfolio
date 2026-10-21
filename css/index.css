@@ -232,32 +232,6 @@ button:focus-visible {
   fill: #000000 !important;
   color: #000000 !important;
 }
-.main .aboutme .right .picbox#heroCharacter.lottie-dark {
-  filter: none;
-}
-.main .aboutme .right .picbox#heroCharacter.lottie-dark > svg {
-  filter: invert(1) hue-rotate(180deg);
-}
-.lottie-caption {
-  position: absolute;
-  z-index: 2;
-  top: 14.5%;
-  left: 10%;
-  width: 60%;
-  height: 9%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  background: transparent;
-  color: #111111 !important;
-  font-size: 12px;
-  line-height: 1;
-  pointer-events: none;
-}
-.lottie-dark .lottie-caption {
-  color: #FFFFFF !important;
-}
 
 /* The original stylesheet uses fixed text colors in many responsive blocks.
    Override those values together so every text layer follows dark mode. */

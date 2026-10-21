@@ -155,19 +155,34 @@
            const savedTheme = localStorage.getItem('portfolio-theme');
            let heroAnimation;
 
-           if (window.lottie && heroCharacter) {
+           function loadHeroAnimation(isDark) {
+             if (!window.lottie || !heroCharacter) return;
              fetch('./uploads/img/aboutme/character-lottie.json')
                .then(response => response.json())
                .then(animationData => {
                  const captionLayer = animationData.layers?.find(layer => layer.nm === "Hi, I'm alex");
-                 if (captionLayer) captionLayer.ks.o = { a: 0, k: 0 };
-                 heroAnimation = window.lottie.loadAnimation({
-                   container: heroCharacter,
-                   renderer: 'svg',
-                   loop: true,
-                   autoplay: true,
-                   animationData
-                 });
+                 if (captionLayer?.t?.d?.k) {
+                   captionLayer.t.d.k.forEach(frame => {
+                     if (frame.s) frame.s.fc = isDark ? [1, 1, 1] : [0, 0, 0];
+                   });
+                 }
+                 if (isDark) {
+                   const invertColors = value => {
+                     if (!value || typeof value !== 'object') return;
+                     Object.keys(value).forEach(key => {
+                       const current = value[key];
+                       if (key === 'c' && current && current.a === 0 && Array.isArray(current.k) && current.k.length >= 3) {
+                         current.k = current.k.map(channel => 1 - channel);
+                       } else if (key !== 'fc') {
+                         invertColors(current);
+                       }
+                     });
+                   };
+                   invertColors(animationData);
+                   if (captionLayer?.t?.d?.k) captionLayer.t.d.k.forEach(frame => { if (frame.s) frame.s.fc = [1, 1, 1]; });
+                 }
+                 if (heroAnimation) heroAnimation.destroy();
+                 heroAnimation = window.lottie.loadAnimation({ container: heroCharacter, renderer: 'svg', loop: true, autoplay: true, animationData });
                });
            }
 
@@ -179,7 +194,7 @@
              themeToggle.innerHTML = isDark
                ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12ZM11 2h2v3h-2V2Zm0 17h2v3h-2v-3ZM2 11h3v2H2v-2Zm17 0h3v2h-3v-2ZM4.22 5.64l1.42-1.42 2.12 2.12-1.42 1.42-2.12-2.12Zm12.02 12.02 1.42-1.42 2.12 2.12-1.42 1.42-2.12-2.12ZM18.36 4.22l1.42 1.42-2.12 2.12-1.42-1.42 2.12-2.12ZM6.34 16.24l2.12-2.12 1.42 1.42-2.12 2.12-1.42-1.42Z"></path></svg>'
                : '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10.5 3.05a8.5 8.5 0 1 0 10.45 10.45A8.5 8.5 0 0 1 10.5 3.05Z"></path></svg>';
-             heroCharacter.classList.toggle('lottie-dark', isDark);
+             loadHeroAnimation(isDark);
            }
 
            applyTheme(savedTheme || 'light');
