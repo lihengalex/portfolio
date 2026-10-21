@@ -156,13 +156,19 @@
            let heroAnimation;
 
            if (window.lottie && heroCharacter) {
-             heroAnimation = window.lottie.loadAnimation({
-               container: heroCharacter,
-               renderer: 'svg',
-               loop: true,
-               autoplay: true,
-               path: './uploads/img/aboutme/character-lottie.json'
-             });
+             fetch('./uploads/img/aboutme/character-lottie.json')
+               .then(response => response.json())
+               .then(animationData => {
+                 const captionLayer = animationData.layers?.find(layer => layer.nm === "Hi, I'm alex");
+                 if (captionLayer) captionLayer.ks.o = { a: 0, k: 0 };
+                 heroAnimation = window.lottie.loadAnimation({
+                   container: heroCharacter,
+                   renderer: 'svg',
+                   loop: true,
+                   autoplay: true,
+                   animationData
+                 });
+               });
            }
 
            function applyTheme(theme) {
