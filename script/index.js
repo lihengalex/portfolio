@@ -153,23 +153,30 @@
            const themeToggle = document.getElementById('themeToggle');
            const heroCharacter = document.getElementById('heroCharacter');
            const savedTheme = localStorage.getItem('portfolio-theme');
-           let heroAnimation;
-           let heroAnimationRequest = 0;
+           let heroAnimations = { light: null, dark: null };
+           let heroAnimationsReady = false;
 
-           function loadHeroAnimation(isDark) {
+           function initializeHeroAnimations() {
              if (!window.lottie || !heroCharacter) return;
-             const requestId = ++heroAnimationRequest;
-             const animationPath = isDark
-               ? './uploads/img/aboutme/character-dark.json'
-               : './uploads/img/aboutme/character-light.json';
-             fetch(animationPath)
-               .then(response => response.json())
-               .then(animationData => {
-                 if (requestId !== heroAnimationRequest) return;
-                 if (requestId !== heroAnimationRequest) return;
-                 if (heroAnimation) heroAnimation.destroy();
-                 heroAnimation = window.lottie.loadAnimation({ container: heroCharacter, renderer: 'svg', loop: true, autoplay: true, animationData });
-               });
+             Promise.all([
+               fetch('./uploads/img/aboutme/character-light.json').then(response => response.json()),
+               fetch('./uploads/img/aboutme/character-dark.json').then(response => response.json())
+             ]).then(([lightData, darkData]) => {
+               heroAnimations.light = window.lottie.loadAnimation({ container: heroCharacter.querySelector('.lottie-stage-light'), renderer: 'svg', loop: true, autoplay: false, animationData: lightData });
+               heroAnimations.dark = window.lottie.loadAnimation({ container: heroCharacter.querySelector('.lottie-stage-dark'), renderer: 'svg', loop: true, autoplay: false, animationData: darkData });
+               heroAnimationsReady = true;
+               applyHeroAnimationTheme(document.documentElement.dataset.theme === 'dark');
+             });
+           }
+
+           function applyHeroAnimationTheme(isDark) {
+             heroCharacter.classList.toggle('lottie-dark', isDark);
+             const active = isDark ? heroAnimations.dark : heroAnimations.light;
+             const inactive = isDark ? heroAnimations.light : heroAnimations.dark;
+             if (!heroAnimationsReady || !active) return;
+             inactive?.pause();
+             active.goToAndPlay(0, true);
+             heroCharacter.classList.toggle('is-dark', isDark);
            }
 
            function applyTheme(theme) {
@@ -180,9 +187,10 @@
              themeToggle.innerHTML = isDark
                ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12ZM11 2h2v3h-2V2Zm0 17h2v3h-2v-3ZM2 11h3v2H2v-2Zm17 0h3v2h-3v-2ZM4.22 5.64l1.42-1.42 2.12 2.12-1.42 1.42-2.12-2.12Zm12.02 12.02 1.42-1.42 2.12 2.12-1.42 1.42-2.12-2.12ZM18.36 4.22l1.42 1.42-2.12 2.12-1.42-1.42 2.12-2.12ZM6.34 16.24l2.12-2.12 1.42 1.42-2.12 2.12-1.42-1.42Z"></path></svg>'
                : '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10.5 3.05a8.5 8.5 0 1 0 10.45 10.45A8.5 8.5 0 0 1 10.5 3.05Z"></path></svg>';
-             loadHeroAnimation(isDark);
+             applyHeroAnimationTheme(isDark);
            }
 
+           initializeHeroAnimations();
            applyTheme(savedTheme || 'light');
            themeToggle.addEventListener('click', function () {
              const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
