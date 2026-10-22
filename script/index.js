@@ -159,44 +159,16 @@
            function loadHeroAnimation(isDark) {
              if (!window.lottie || !heroCharacter) return;
              const requestId = ++heroAnimationRequest;
-             fetch('./uploads/img/aboutme/character-lottie.json')
+             const animationPath = isDark
+               ? './uploads/img/aboutme/character-dark.json'
+               : './uploads/img/aboutme/character-light.json';
+             fetch(animationPath)
                .then(response => response.json())
                .then(animationData => {
-                 const captionLayer = animationData.layers?.find(layer => layer.nm === "Hi, I'm alex");
-                 if (captionLayer) captionLayer.ks.o = { a: 0, k: 0 };
                  if (requestId !== heroAnimationRequest) return;
-                 if (captionLayer?.t?.d?.k) {
-                   captionLayer.t.d.k.forEach(frame => {
-                     if (frame.s) frame.s.fc = isDark ? [1, 1, 1] : [0, 0, 0];
-                   });
-                 }
-                 if (isDark) {
-                   const invertColors = value => {
-                     if (!value || typeof value !== 'object') return;
-                     Object.keys(value).forEach(key => {
-                       const current = value[key];
-                       if (key === 'c' && current && current.a === 0 && Array.isArray(current.k) && current.k.length >= 3) {
-                         current.k = current.k.map(channel => 1 - channel);
-                       } else if (key !== 'fc') {
-                         invertColors(current);
-                       }
-                     });
-                   };
-                   invertColors(animationData);
-                   if (captionLayer?.t?.d?.k) captionLayer.t.d.k.forEach(frame => { if (frame.s) frame.s.fc = [1, 1, 1]; });
-                 }
                  if (requestId !== heroAnimationRequest) return;
                  if (heroAnimation) heroAnimation.destroy();
                  heroAnimation = window.lottie.loadAnimation({ container: heroCharacter, renderer: 'svg', loop: true, autoplay: true, animationData });
-                 heroCharacter.classList.toggle('lottie-dark', isDark);
-                 heroAnimation.addEventListener('DOMLoaded', () => {
-                   const captionNodes = heroCharacter.querySelectorAll('[data-name="Hi, I\'m alex"]');
-                   captionNodes.forEach(node => {
-                     node.style.fill = isDark ? '#FFFFFF' : '#111111';
-                     node.style.color = isDark ? '#FFFFFF' : '#111111';
-                     if (isDark) node.style.filter = 'invert(1)';
-                   });
-                 });
                });
            }
 
