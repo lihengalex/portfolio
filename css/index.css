@@ -2542,6 +2542,11 @@ header .nav .right .nav-actions .menu-toggle { display: none; }
 :root[data-theme="dark"] body .theme-toggle:hover { background: var(--m3-surface-container-high) !important; color: var(--m3-primary) !important; }
 :root[data-theme="dark"] body footer { background: var(--m3-surface-container) !important; border-color: var(--m3-outline) !important; }
 
+/* In light mode, the information section stays on the same canvas as the page. */
+:root:not([data-theme="dark"]) .main .info {
+  background-color: #F8F8F8 !important;
+}
+
 /* Final dark-theme direction: one calm canvas, blue interaction accent,
    and the original WeChat green reserved for the contact action. */
 :root[data-theme="dark"] {
