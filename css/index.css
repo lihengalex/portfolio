@@ -191,6 +191,17 @@ header .nav .right .nav-actions {
   align-items: center;
   gap: 10px;
 }
+
+header .nav .right .nav-actions .language-toggle {
+  color: var(--theme-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+header .nav .right .nav-actions .language-toggle:hover { color: var(--theme-primary); }
 .theme-toggle {
   display: grid;
   place-items: center;

@@ -6,13 +6,13 @@
             const modal = document.getElementById('modal');
             const overlay1 = document.getElementById('overlay1');
 
-            showModalBtn.addEventListener('click', function() {
+            showModalBtn?.addEventListener('click', function() {
            //  modal.classList.add('show'); // 添加 .show 类
             modal.style.display = 'block';
             overlay1.style.display = 'block';
             });
 
-            overlay1.addEventListener('click', function() {
+            overlay1?.addEventListener('click', function() {
            //  modal.classList.remove('show'); // 移除 .show 类
             modal.style.display = 'none';
             overlay1.style.display = 'none';
