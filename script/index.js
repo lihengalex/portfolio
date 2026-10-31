@@ -158,9 +158,10 @@
 
            function initializeHeroAnimations() {
              if (!window.lottie || !heroCharacter) return;
+             const siteRoot = document.documentElement.dataset.siteRoot || './';
              Promise.all([
-               fetch('./uploads/img/aboutme/character-light.json').then(response => response.json()),
-               fetch('./uploads/img/aboutme/character-dark.json').then(response => response.json())
+               fetch(`${siteRoot}uploads/img/aboutme/character-light.json`).then(response => response.json()),
+               fetch(`${siteRoot}uploads/img/aboutme/character-dark.json`).then(response => response.json())
              ]).then(([lightData, darkData]) => {
                heroAnimations.light = window.lottie.loadAnimation({ container: heroCharacter.querySelector('.lottie-stage-light'), renderer: 'svg', loop: true, autoplay: false, animationData: lightData });
                heroAnimations.dark = window.lottie.loadAnimation({ container: heroCharacter.querySelector('.lottie-stage-dark'), renderer: 'svg', loop: true, autoplay: false, animationData: darkData });
