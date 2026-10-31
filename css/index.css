@@ -2588,3 +2588,30 @@ header .nav .right .nav-actions .menu-toggle { display: none; }
 }
 :root[data-theme="dark"] body #showModalBtn span,
 :root[data-theme="dark"] body #showModalBtn i { color: #FFFFFF !important; }
+
+/* Keep the English mail link visually identical to the Chinese contact button. */
+.main .aboutme .left .bottom .contact-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 50%;
+  background-color: #FFFFFF;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  padding: 0 16px 0 12px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.main .aboutme .left .bottom .contact-link:hover {
+  color: #05D268;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+:root[data-theme="dark"] body .main .aboutme .left .bottom .contact-link {
+  background: #07C160;
+  border-color: #07C160;
+  color: #FFFFFF;
+}
